@@ -1,0 +1,41 @@
+@use '../../assets/styles/colors' as *;
+@use '../../assets/styles/text-styles' as *;
+
+.background-overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: $black-underneath;
+}
+
+.wrapper {
+  position: relative;
+  width: 980px;
+  margin: 260px auto;
+  border-radius: 8px;
+  background-color: $white;
+
+  & > svg {
+    cursor: pointer;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  .content {
+    padding: 24px 24px 14px 24px;
+    flex: 1; // Контент будет занимать всю доступную высоту
+  }
+
+  .save-cancel-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px;
+    border-top: 1px solid $gray-200;
+  }
+}
+
+svg {
+  cursor: pointer;
+}

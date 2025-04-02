@@ -1,0 +1,55 @@
+@use '../../assets/styles/colors' as *;
+@use '../../assets/styles/text-styles' as *;
+
+.main-group {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 75px auto;
+  row-gap: 10px;
+
+  .main-group__logic {
+    margin-left: 10px;
+
+    .main-group__conditions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+
+      .conditions__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+.additional-group {
+  margin: 24px 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  .additional-group__all-any {
+    display: flex;
+  }
+
+  .additional-group__content {
+    padding: 16px 16px 6px 16px;
+    border-radius: 8px;
+    margin-left: 10px;
+    border: 1px solid $gray-200;
+    width: 100%;
+  }
+}
+
+.gray {
+  background-color: $gray-50;
+}
+
+.white {
+  background-color: $white;
+}
