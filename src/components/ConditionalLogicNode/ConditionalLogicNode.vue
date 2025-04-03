@@ -9,16 +9,50 @@
       @isValueSelect="isValueSelect"
     />
 
-    <div v-else-if="node.type === 'group' && node.id === 0" :data-group-id="node.id" class="group" :key="node.id + 5000">
-      <RowComponent direction="row" justifyItems="space-between" alignItems="center">
-        <RowComponent direction="row" justifyItems="start" alignItems="center" :columnGap="10">
-          <ButtonBase caption="Add condition" leftIcon="plus" size="md" variant="link_gray" class="add-condition" />
-          <ButtonBase caption="Add group" leftIcon="plus" size="md" variant="link_gray" class="add-group" />
+    <div
+      v-else-if="node.type === 'group' && node.id === 0"
+      :data-group-id="node.id"
+      class="group"
+      :key="node.id + 5000"
+    >
+      <RowComponent
+        direction="row"
+        justifyItems="space-between"
+        alignItems="center"
+      >
+        <RowComponent
+          direction="row"
+          justifyItems="start"
+          alignItems="center"
+          :columnGap="10"
+        >
+          <ButtonBase
+            caption="+ Add condition"
+            size="lg"
+            variant="link_gray"
+            class="add-condition"
+          />
+          <ButtonBase
+            caption="+ Add group"
+            size="lg"
+            variant="link_gray"
+            class="add-group"
+          />
         </RowComponent>
-        <ButtonBase caption="Clear all filters" size="md" variant="link_gray" @click="$emit('clearAllClick')" />
+        <ButtonBase
+          caption="Clear all filters"
+          size="lg"
+          variant="link_gray"
+          @click="$emit('clearAllClick')"
+        />
       </RowComponent>
       <div class="main-group">
-        <DropdownLogic :options="optionsAllAny" placeholder="All" @select="(option) => isAllAnySelect(option, node.id)" width="narrow" />
+        <DropdownLogic
+          :options="optionsAllAny"
+          placeholder="All"
+          @select="(option) => isAllAnySelect(option, node.id)"
+          width="narrow"
+        />
         <div class="main-group__logic">
           <ConditionalLogicNode
             :logicObj="node.conditions"
@@ -31,11 +65,24 @@
       </div>
     </div>
 
-    <div v-else-if="node.type === 'group' && node.id !== 0" :data-group-id="node.id" class="group" :key="node.id + 10000">
+    <div
+      v-else-if="node.type === 'group' && node.id !== 0"
+      :data-group-id="node.id"
+      class="group"
+      :key="node.id + 10000"
+    >
       <div class="additional-group" :data-group-id="node.id">
-        <SvgIcon name="drag_drop_web" :size="16" color="gray-400" class="drag-group" />
-        <div class="additional-group__content" :class="`group ${node.color ? 'gray' : 'white'}`">
-          <RowComponent direction="row" justifyItems="space-between" alignItems="center" :bottomIndent="16">
+        <div class="decoration-circle"></div>
+        <div
+          class="additional-group__content"
+          :class="`group ${node.color ? 'gray' : 'white'}`"
+        >
+          <RowComponent
+            direction="row"
+            justifyItems="space-between"
+            alignItems="center"
+            :bottomIndent="16"
+          >
             <DropdownLogic
               :options="optionsAllAny"
               placeholder="All"
@@ -43,10 +90,31 @@
               width="narrow"
               :bottomIndent="0"
             />
-            <RowComponent direction="row" justifyItems="start" alignItems="center" :columnGap="10" :bottomIndent="0">
-              <ButtonBase caption="Add condition" leftIcon="plus" size="md" variant="link_gray" class="add-condition" />
-              <ButtonBase caption="Add group" leftIcon="plus" size="md" variant="link_gray" class="add-group" />
-              <SvgIcon name="trash-2" :size="20" color="gray-500" class="delete-group" />
+            <RowComponent
+              direction="row"
+              justifyItems="start"
+              alignItems="center"
+              :columnGap="10"
+              :bottomIndent="0"
+            >
+              <ButtonBase
+                caption="+ Add condition"
+                size="lg"
+                variant="link_gray"
+                class="add-condition"
+              />
+              <ButtonBase
+                caption="+ Add group"
+                size="lg"
+                variant="link_gray"
+                class="add-group"
+              />
+              <SvgIcon
+                name="trash-2"
+                :size="20"
+                color="black"
+                class="delete-group"
+              />
             </RowComponent>
           </RowComponent>
 
@@ -66,14 +134,20 @@
 </template>
 
 <script>
-import ConditionalLogicCondition from '@/components/ConditionalLogicCondition/ConditionalLogicCondition.vue';
-import RowComponent from '@/components/RowComponent/RowComponent.vue';
-import ButtonBase from '@/components/ButtonBase/ButtonBase.vue';
-import DropdownLogic from '@/components/Inputs/DropdownLogic.vue';
-import SvgIcon from '../SvgIcon/SvgIcon.vue';
+import ConditionalLogicCondition from "@/components/ConditionalLogicCondition/ConditionalLogicCondition.vue";
+import RowComponent from "@/components/RowComponent/RowComponent.vue";
+import ButtonBase from "@/components/ButtonBase/ButtonBase.vue";
+import DropdownLogic from "@/components/Inputs/DropdownLogic.vue";
+import SvgIcon from "../SvgIcon/SvgIcon.vue";
 
 export default {
-  emits: ['isOperationsSelect', 'isElementSelect', 'isValueSelect', 'isAllAnySelect', 'clearAllClick'],
+  emits: [
+    "isOperationsSelect",
+    "isElementSelect",
+    "isValueSelect",
+    "isAllAnySelect",
+    "clearAllClick",
+  ],
   components: {
     ConditionalLogicCondition,
     RowComponent,
@@ -81,7 +155,7 @@ export default {
     DropdownLogic,
     SvgIcon,
   },
-  name: 'LogicNode',
+  name: "LogicNode",
   props: {
     logicObj: {
       type: Object,
@@ -90,23 +164,23 @@ export default {
   },
   methods: {
     isAllAnySelect(option, id) {
-      this.$emit('isAllAnySelect', option, id);
+      this.$emit("isAllAnySelect", option, id);
     },
     isOperationsSelect(...args) {
-      this.$emit('isOperationsSelect', ...args);
+      this.$emit("isOperationsSelect", ...args);
     },
     isElementSelect(...args) {
-      this.$emit('isElementSelect', ...args);
+      this.$emit("isElementSelect", ...args);
     },
     isValueSelect(...args) {
-      this.$emit('isValueSelect', ...args);
+      this.$emit("isValueSelect", ...args);
     },
   },
   data() {
     return {
       optionsAllAny: [
-        { value: 'all', label: 'All' },
-        { value: 'any', label: 'Any' },
+        { value: "all", label: "All" },
+        { value: "any", label: "Any" },
       ],
     };
   },

@@ -1,5 +1,8 @@
-import { createApp } from 'vue'
-import '@/assets/styles/index.scss';
-import App from './App.vue'
+import { createApp } from "vue";
+import "@/assets/styles/index.scss";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+const requireIcons = require.context("@/assets/icons", false, /\.svg$/);
+requireIcons.keys().forEach(requireIcons);
+
+createApp(App).mount("#app");

@@ -13,20 +13,29 @@
         class="input-dropdown__input"
         ref="input"
       />
-      <span class="chevron-icon" :class="{ 'chevron-icon--rotated': showDropdown }">
-        <SvgIcon :name="icon" size="16" />
+      <span
+        class="chevron-icon"
+        :class="{ 'chevron-icon--rotated': showDropdown }"
+      >
+        <SvgIcon :name="icon" size="16" color="error-500" />
       </span>
-      <DropdownMenu v-if="showDropdown" :options="displayOptions" :selectedIndex="selectedIndex" @select="selectOption" />
+      <DropdownMenu
+        v-if="showDropdown"
+        :options="displayOptions"
+        :selectedIndex="selectedIndex"
+        @select="selectOption"
+        class="dropdown-menu--wide"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
-import DropdownMenu from '@/components/DropdownMenu/DropdownMenu.vue';
+import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
+import DropdownMenu from "@/components/DropdownMenu/DropdownMenu.vue";
 
 export default {
-  name: 'InputDropdown',
+  name: "InputDropdown",
   components: {
     SvgIcon,
     DropdownMenu,
@@ -34,7 +43,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: '',
+      default: "",
     },
     options: {
       type: Array,
@@ -42,17 +51,17 @@ export default {
     },
     placeholder: {
       type: String,
-      default: 'Select an option',
+      default: "Select an option",
     },
     icon: {
       type: String,
-      default: 'chevron-down',
+      default: "chevron-down",
     },
     dataId: { type: Number, default: null },
   },
   data() {
     return {
-      searchTerm: '',
+      searchTerm: "",
       showDropdown: false,
       filteredOptions: [],
       selectedIndex: -1,
@@ -63,26 +72,28 @@ export default {
     displayOptions() {
       if (!this.searchTerm) return this.options;
       const searchLower = this.searchTerm.toLowerCase();
-      return this.options.filter((option) => option.label.toLowerCase().includes(searchLower));
+      return this.options.filter((option) =>
+        option.label.toLowerCase().includes(searchLower)
+      );
     },
   },
   mounted() {
-    document.addEventListener('click', this.handleOutsideClick);
+    document.addEventListener("click", this.handleOutsideClick);
   },
   beforeUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
+    document.removeEventListener("click", this.handleOutsideClick);
   },
   watch: {
     searchTerm(newValue) {
       this.selectedOption = newValue;
-      this.$emit('select', { label: newValue, value: newValue }, this.dataId);
+      this.$emit("select", { label: newValue, value: newValue }, this.dataId);
     },
   },
   methods: {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
       if (this.showDropdown) {
-        this.searchTerm = '';
+        this.searchTerm = "";
         this.filteredOptions = this.options;
         this.selectedIndex = -1;
       }
@@ -99,14 +110,17 @@ export default {
       this.searchTerm = option.label;
       this.selectedOption = option;
       this.showDropdown = false;
-      this.$emit('select', option, this.dataId);
+      this.$emit("select", option, this.dataId);
     },
     handleArrowDown() {
       if (!this.showDropdown) {
         this.toggleDropdown();
         return;
       }
-      this.selectedIndex = Math.min(this.selectedIndex + 1, this.displayOptions.length - 1);
+      this.selectedIndex = Math.min(
+        this.selectedIndex + 1,
+        this.displayOptions.length - 1
+      );
     },
     handleArrowUp() {
       if (!this.showDropdown) return;

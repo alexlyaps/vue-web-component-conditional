@@ -1,8 +1,8 @@
-@use '../../assets/styles/colors' as *;
-@use '../../assets/styles/text-styles' as *;
+@use "../../assets/styles/colors" as *;
+@use "../../assets/styles/text-styles" as *;
 
 @mixin input-base {
-  border: 1px solid $gray-300;
+  border: 1px solid $success-400;
   border-radius: 8px;
   padding: 7px 14px;
   height: 40px;

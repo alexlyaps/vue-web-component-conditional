@@ -1,5 +1,5 @@
-@use '../../assets/styles/colors' as *;
-@use '../../assets/styles/text-styles' as *;
+@use "../../assets/styles/colors" as *;
+@use "../../assets/styles/text-styles" as *;
 
 .condition-content {
   display: flex;
@@ -20,5 +20,12 @@
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+  }
+
+  .decoration-circle {
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: $plum-blue solid 2px;
   }
 }

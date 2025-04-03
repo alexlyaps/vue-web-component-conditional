@@ -1,12 +1,11 @@
-@use '../../assets/styles/colors' as *;
-@use '../../assets/styles/text-styles' as *;
+@use "../../assets/styles/colors" as *;
+@use "../../assets/styles/text-styles" as *;
 
 .dropdown-menu {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  min-width: 180px;
   max-height: 200px;
   overflow-y: auto;
   border: 1px solid $gray-100;
