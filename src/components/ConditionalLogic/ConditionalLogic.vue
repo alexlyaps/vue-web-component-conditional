@@ -1,33 +1,31 @@
 <template>
-  <div class="background-overlay" ref="outside" @click="handleClickOutside">
-    <div class="wrapper">
-      <div class="content">
-        <RowComponent
-          direction="row"
-          justifyItems="space-between"
-          alignItems="center"
-          :bottomIndent="24"
+  <div class="wrapper">
+    <div class="content">
+      <RowComponent
+        direction="row"
+        justifyItems="space-between"
+        alignItems="center"
+        :bottomIndent="24"
+      >
+        <TextComponent
+          tag="h2"
+          size="display-xs"
+          weight="semibold"
+          align="left"
+          color="plum-blue"
         >
-          <TextComponent
-            tag="h2"
-            size="display-xs"
-            weight="semibold"
-            align="left"
-            color="plum-blue"
-          >
-            LOGIC
-          </TextComponent>
-        </RowComponent>
-        <div class="content__main" @click="handleClick">
-          <ConditionalLogicNode
-            :logicObj="userLogic"
-            @isElementSelect="handleElementSelect"
-            @isOperationsSelect="handleOperationsSelect"
-            @isValueSelect="handleValueSelect"
-            @isAllAnySelect="handleAllAnySelect"
-            @clearAllClick="handleClearAllClick"
-          />
-        </div>
+          LOGIC
+        </TextComponent>
+      </RowComponent>
+      <div class="content__main" @click="handleClick">
+        <ConditionalLogicNode
+          :logicObj="userLogic"
+          @isElementSelect="handleElementSelect"
+          @isOperationsSelect="handleOperationsSelect"
+          @isValueSelect="handleValueSelect"
+          @isAllAnySelect="handleAllAnySelect"
+          @clearAllClick="handleClearAllClick"
+        />
       </div>
     </div>
   </div>
@@ -179,9 +177,6 @@ export default {
       );
     },
 
-    handleDragClick() {
-      console.log("Drag click");
-    },
     handleAddConditionClick(groupId) {
       const group = this.findGroupById(groupId, this.userLogic);
       if (group) {
@@ -273,20 +268,20 @@ export default {
         },
       ];
     },
-    handleCancelClick() {
-      console.log("Cancel Click");
-    },
-    handleSaveClick() {
-      console.log("Save Click");
-    },
-    handleXClick() {
-      this.$emit("xClick");
-    },
     handleClickOutside(e) {
       const outside = this.$refs.outside;
       if (e.target === outside) {
         this.$emit("xClick");
       }
+    },
+    sendMessage() {
+      this.$el.dispatchEvent(
+        new CustomEvent("custom-event", {
+          detail: { message: "Hello from Vue!" },
+          bubbles: true,
+          composed: true,
+        })
+      );
     },
   },
 };

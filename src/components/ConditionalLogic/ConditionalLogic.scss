@@ -1,18 +1,8 @@
 @use "../../assets/styles/colors" as *;
 @use "../../assets/styles/text-styles" as *;
 
-.background-overlay {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  min-height: 100%;
-  background-color: $black-underneath;
-}
-
 .wrapper {
-  position: relative;
   width: 800px;
-  margin: 260px auto;
   border-radius: 8px;
   background-color: $pale-orange;
 

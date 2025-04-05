@@ -2,7 +2,12 @@
 @use "text-styles" as *;
 @use "dynamic-margins" as *;
 
-@import url("https://fonts.googleapis.com/css2?family=Felipa&display=swap");
+@font-face {
+  font-family: "Felipa";
+  src: url("@/assets/fonts/Felipa-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   font-size: 16px;

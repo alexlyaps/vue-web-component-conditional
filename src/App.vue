@@ -3,13 +3,16 @@ import ConditionalLogic from "@/components/ConditionalLogic/ConditionalLogic.vue
 </script>
 
 <template>
-  <ConditionalLogic title="LOGIC" @x-click="handleFilterClicked" />
+  <ConditionalLogic />
 </template>
 
 <style lang="scss">
 #app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Felipa", serif;
-  font-style: italic;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #101828;
